@@ -1,8 +1,9 @@
+SOLVED:
 1. Fix input lag
-
-
-2. GUI
 3. Make the elapsed time count milliseconds, but leave work and rest timers as they are
+
+UNSOLVED:
+2. GUI or go web-based
 4. Add logs 
     4.1 When the stopwatch was started
     4.2 When the the current elapsed session started

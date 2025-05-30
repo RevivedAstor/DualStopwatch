@@ -11,6 +11,8 @@ def format_time_milli(elapsed):
     return f"{format_time(elapsed)}.{millis:03}"
 
 
+#The code also counts 0 as num 0. That's bad
+
 def stopwatch():
     input("Press Enter to start...")
     start_time = time.time()
@@ -25,9 +27,14 @@ def stopwatch():
     rest_saved = 0
     rest = 0
 
+    #variable to count the times the mode was switched
+    switcheroo = 0
+
+    print("Started at:", time.strftime("%H:%M:%S", time.localtime(start_time)))
+
     while True:    
-        if keyboard.is_pressed("num -"):
-            while keyboard.is_pressed("num -"):
+        if keyboard.is_pressed("ctrl") and keyboard.is_pressed("alt") and keyboard.is_pressed("-"):
+            while keyboard.is_pressed("ctrl") and keyboard.is_pressed("alt") and keyboard.is_pressed("-"):
                 time.sleep(0.005)
 
             break
@@ -35,12 +42,14 @@ def stopwatch():
         
         elapsed = time.time() - start_time
 
-        if keyboard.is_pressed("num 0"):
+        if keyboard.is_pressed("ctrl") and keyboard.is_pressed("alt") and keyboard.is_pressed("`"):
             #Currently, the code waits until the key is no longer pressed to
             #continue. I should probably change that
             #Wait for the key to be released (debounce fix)
-            while keyboard.is_pressed("num 0"):
+            while keyboard.is_pressed("ctrl") and keyboard.is_pressed("alt") and keyboard.is_pressed("`"):
                 time.sleep(0.05)
+
+            switcheroo += 1
 
             if mode == 0:
                 work_saved = work_saved + elapsed
@@ -59,7 +68,9 @@ def stopwatch():
         if mode == 1:
             rest = rest_saved + elapsed
 
-        print(f"\rElapsed Time: {format_time_milli(elapsed)} | Work: {format_time(work)} | Rest: {format_time(rest)}" , end="")
+
+
+        print(f"\rElapsed Time: {format_time_milli(elapsed)} | Work: {format_time(work)} | Rest: {format_time(rest)} | Switches : {switcheroo}" , end="")
 
         time.sleep(0.001)
 
