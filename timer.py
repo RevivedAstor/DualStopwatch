@@ -11,13 +11,17 @@ def format_time_milli(elapsed):
     return f"{format_time(elapsed)}.{millis:03}"
 
 
-#The code also counts 0 as num 0. That's bad
+#Show what mode is currently elapsed
+
+#How can I save the logs? Shoudl I create an object for each log?
+#Create an array of "log" items, which would 
+# save start_time, end_time and length of the log
 
 def stopwatch():
     input("Press Enter to start...")
     start_time = time.time()
 
-    print("Stopwatch started. Press [num 0] to switch the mode, [num -] for Quit")
+    print("Stopwatch started. Press [ctrl+alt+`] to switch the mode, [ctrl+alt+-] for Quit")
 
     #mode = 0 -> Work: mode = 1 -> rest 
     mode = 0
@@ -32,6 +36,7 @@ def stopwatch():
 
     print("Started at:", time.strftime("%H:%M:%S", time.localtime(start_time)))
 
+    # Main loop
     while True:    
         if keyboard.is_pressed("ctrl") and keyboard.is_pressed("alt") and keyboard.is_pressed("-"):
             while keyboard.is_pressed("ctrl") and keyboard.is_pressed("alt") and keyboard.is_pressed("-"):
@@ -43,8 +48,6 @@ def stopwatch():
         elapsed = time.time() - start_time
 
         if keyboard.is_pressed("ctrl") and keyboard.is_pressed("alt") and keyboard.is_pressed("`"):
-            #Currently, the code waits until the key is no longer pressed to
-            #continue. I should probably change that
             #Wait for the key to be released (debounce fix)
             while keyboard.is_pressed("ctrl") and keyboard.is_pressed("alt") and keyboard.is_pressed("`"):
                 time.sleep(0.05)
