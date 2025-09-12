@@ -11,6 +11,9 @@ UNSOLVED:
     4.3 The feature to see all of your logs
 - Make so that after the stopwatch is stopped, the user can see his logs
 - "History"? Like, being able to see how much work was done on a certain day throughout the month or sum
+- Fill the ReadMe
+- Add a stop feature (maybe)
+- Sometimes I quit the stopwatch by not actually using the hotkey for it, in that case the log might not be saved. Make so that it does
 
 Change debounce logic (maybe use release_trigger_on?)
 

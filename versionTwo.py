@@ -1,4 +1,5 @@
 import time
+from datetime import datetime, timedelta
 import keyboard
 
 class Stopwatch:
@@ -49,9 +50,11 @@ class Stopwatch:
 
         print("Stopwatch started. Press [ctrl+alt+`] to switch the mode, [ctrl+alt+-] for Quit")
 
+        print("Started at:", time.strftime("%H:%M:%S", time.localtime(self.start_time)))
+
 
         while True:
-            if self.abort: #abort is updated in method quit_stopwatch
+            if self.abort: # abort is updated in method quit_stopwatch
                 break
 
 
@@ -86,6 +89,10 @@ class Stopwatch:
         self.start_time = time.time()
         self.elapsed = time.time() - self.start_time
         self.mode ^= 1 # toggle between 1 and 0
+
+
+
+
     
 
     def quit_stopwatch(self):
